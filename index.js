@@ -29,12 +29,34 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //built-in static middleware from ExpressJS to use static resources
 app.use(express.static('public'))
-// Test route to select data from the 'greetings' table
-app.get('/', (req, res) =>{
-    res.render('index', {
-        obj: 'hi'
+
+import { Router } from "express";
+import axios from "axios";
+import "dotenv/config";
+
+// Router instance
+const router = Router();
+
+// Api endpoint
+const API_END_POINT = "https://shoes-api-rm9c.onrender.com/api/shoes";
+
+// Router to get the shoes from the database and display the data to the ui
+router.get("/", async (req, res) => {
+    // GET the shoes from the api
+    const shoes = (await axios.get(API_END_POINT)).data;
+    console.log(shoes);
+    // RENDER the shoes in the index page
+    res.render("index", {
+        shoes: shoes,
     });
-})
+});
+
+router.get("/addShoes", (req, res) => {
+    res.render("addShoes");
+});
+
+
+app.use(router)
 //process the enviroment the port is running on
 let PORT = process.env.PORT || 1999;
 app.listen(PORT, () => {

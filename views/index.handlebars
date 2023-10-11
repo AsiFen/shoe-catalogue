@@ -1,24 +1,24 @@
 <div class="container">
     <div class="home">
-    <nav>
-<span>Shoez</span>
-    </nav>
+        <nav>
+            <span>Shoez</span>
+        </nav>
     </div>
 
 
-<div class="showShoes">
-    <div class="flex flex-col items-center justify-center">
-  <ul class="list-disc">
-    {% for shoe in shoes %}
-      <li class="flex flex-row items-center justify-between">
-        <a href="{{ shoe.brand.url }}" class="text-blue-500 hover:underline">{{ shoe.brand.name }}</a>
-        <span class="font-bold">{{ shoe.price }}</span>
-        <span>{{ shoe.color }}</span>
-      </li>
-    {% endfor %}
-  </ul>
-</div>
+    <div class="showShoes">
+        <div class="flex flex-col items-center justify-center">
+            <ul class="list-disc">
+                {{#each shoes}}
+                <li class="flex flex-row items-center justify-between">
+                    <a href="{{ this.brand }}" class="text-blue-500 hover:underline">{{ this.shoe_name }}</a>
+                    <span class="font-bold">{{ this.price }}</span>
+                    <span>{{ this.price }}</span>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
 
-</div>
+    </div>
 
 </div>

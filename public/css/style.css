@@ -1,4 +1,4 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans', sans-serif;
@@ -304,4 +304,43 @@ header::after {
     }
 
 
-}
+} */
+
+
+
+.list-disc {
+    list-style-type: disc;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .list-disc li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .list-disc li:last-child {
+    border-bottom: none;
+  }
+  
+  .list-disc a {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .list-disc a:hover {
+    text-decoration: underline;
+  }
+  
+  .list-disc span {
+    color: #000;
+  }
+  
+  .list-disc .font-bold {
+    font-weight: 700;
+  }
+  

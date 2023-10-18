@@ -38,22 +38,41 @@ import "dotenv/config";
 const router = Router();
 
 // Api endpoint
-const API_END_POINT = "https://shoes-api-rm9c.onrender.com/api/shoes";
+const api = "https://shoes-api-rm9c.onrender.com/api/shoes";
+const shoes = (await axios.get(api)).data;
 
-// Router to get the shoes from the database and display the data to the ui
 router.get("/", async (req, res) => {
-    // GET the shoes from the api
-    const shoes = (await axios.get(API_END_POINT)).data;
-    console.log(shoes);
-    // RENDER the shoes in the index page
-    res.render("index", {
-        shoes: shoes,
+     console.log(shoes);
+    let brands = []
+    shoes.forEach(brand => {
+        brands.push(brand.brand);
     });
+
+    res.render("index", {
+        shoes,
+        brands
+    });
+    res.end;
 });
 
-router.get("/addShoes", (req, res) => {
-    res.render("addShoes");
-});
+app.get('/brand:brand', async (req, res) => {
+    const api = "https://shoes-api-rm9c.onrender.com/api/shoes/brand";
+    const shoes = (await axios.get(api)).data;
+
+    let x = req.params.brand;
+    res.end;
+})
+
+// app.get('/:size', async (req, res) => {
+//     let x = req.params.brand;
+//     let size = shoes
+//     res.end;
+// })
+
+// app.get('/:brand/:size', async (req, res) => {
+
+//     res.end;
+// })
 
 
 app.use(router)

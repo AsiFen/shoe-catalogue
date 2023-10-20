@@ -41,8 +41,8 @@ const router = Router();
 const api = "https://shoes-api-rm9c.onrender.com/api/shoes";
 const shoes = (await axios.get(api)).data;
 
+console.log(shoes);
 router.get("/", async (req, res) => {
-     console.log(shoes);
     let brands = []
     shoes.forEach(brand => {
         brands.push(brand.brand);

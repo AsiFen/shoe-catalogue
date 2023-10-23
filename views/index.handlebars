@@ -1,20 +1,12 @@
 <body>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4RRHDZQJ1J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4RRHDZQJ1J');
-</script>
-    <section>
+ 
+    <section class="navigation">
         <nav>
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
                         <a href="#">
-                            <img src="images.png" alt="Simple Shoes">
+                            <img src="/images.png" alt="bbtrfly">
                         </a>
                     </div>
 
@@ -40,28 +32,72 @@
                         <a href="/cart" class="nav-link">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
-                        <a href="" class="nav-link">
-                         <i class='fas fa-user-alt'></i>
+                        <a href="/customer_signup" class="nav-link">
+                            <i class='fas fa-user-alt'></i>
                         </a>
                     </div>
                 </div>
             </nav>
     </section>
 
-    <section>
-        <div class="flex flex-wrap">
-            {{#each shoes}}
-            <div class="display w-80 mt-2 py-2">
-                <div class="shoe">
-                    <img src="{{this.img_url}}" alt="{{name}}">
-                    <h3>{{this.brand}}</h3>
-                    <p>Color: {{this.color}}</p>
-                    <p>Price: ${{this.price}}</p>
-                    {{!-- <p>Gender: {{}}</p> --}}
-                </div>
-            </div>
-            {{/each}}
-        </div>
 
-    </section>
+    <div class="display_filter">
+
+        <section class="filter float-left text-xl w-120">
+            {{!-- <div class="filters">
+                <select name="brand" id="">
+                    <option value="nike"> Select: </option>
+
+                    <option value="nike"> Nike </option>
+                    <option value="">Puma</option>
+                    <option value="">Adidas</option>
+                    <option value="">Sketchers</option>
+                    <option value="">New Balance</option>
+
+                </select>
+            </div> --}}
+            <label for="">Filter by brand:</label>
+            <form action="/brand/" method="get">
+                {{!-- <div>
+                    <input type="checkbox" name="brand" id=""> <label for="">Adidas</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brand" id=""> <label for="">Nike</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brand" id=""> <label for="">Puma</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brand" id=""> <label for="">New Balance</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="brand" id=""> <label for="">Sketchers</label>
+                </div> --}}
+                {{#each brands}}
+                <button type="submit" class="bg-blue-500 p-2" formaction="/brand/{{this}}">{{this}}</button>
+                {{/each}}
+            </form>
+        </section>
+
+        <section class="shoe_display">
+            <div class="flex flex-wrap">
+                {{#each shoes}}
+                <div class="display w-80 mt-2 py-2">
+                    <div class="shoe">
+                        <img src="{{this.img_url}}" alt="{{name}}">
+                        <h3>{{this.brand}}</h3>
+                        <p>Color: {{this.color}}</p>
+                        <p>Price: ${{this.price}}</p>
+                        {{!-- <p>Gender: {{}}</p> --}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </section>
+
+
+
+    </div>
+
+
 </body>

@@ -55,12 +55,14 @@ router.get("/", async (req, res) => {
     res.end;
 });
 
-app.get('/brand:brand', async (req, res) => {
-    const api = "https://shoes-api-rm9c.onrender.com/api/shoes/brand";
-    const shoes = (await axios.get(api)).data;
-
+app.get('/brand/:brand', async (req, res) => {
     let x = req.params.brand;
-    res.end;
+    const api = "https://shoes-api-rm9c.onrender.com/api/shoes/brand/" + x;
+    const shoes = (await axios.get(api)).data;
+    console.log(shoes);
+    res.render("index", {
+        shoes
+    });
 })
 
 // app.get('/:size', async (req, res) => {

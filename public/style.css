@@ -63,3 +63,8 @@ img {
     border-radius: 50%;
     width: 600;
 }
+
+html{
+    font-size: 14px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

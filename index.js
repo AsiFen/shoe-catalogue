@@ -41,16 +41,20 @@ const router = Router();
 const api = "https://shoes-api-rm9c.onrender.com/api/shoes";
 const shoes = (await axios.get(api)).data;
 
-console.log(shoes);
+//  console.log(shoes);
 router.get("/", async (req, res) => {
     let brands = []
-    shoes.forEach(brand => {
-        brands.push(brand.brand);
-    });
+    const brandNames = "http://localhost:9999/api/shoes/brandnames";
+    const shoes = (await axios.get(brandNames)).data;
+
+    console.log(brandNames);
+    // brandNames.forEach(brand => {
+    //     brands.push(brand.brand);
+    // });
 
     res.render("index", {
         shoes,
-        brands
+        brandNames
     });
     res.end;
 });
@@ -59,7 +63,7 @@ app.get('/brand/:brand', async (req, res) => {
     let x = req.params.brand;
     const api = "https://shoes-api-rm9c.onrender.com/api/shoes/brand/" + x;
     const shoes = (await axios.get(api)).data;
-    console.log(shoes);
+    // console.log(shoes);
     res.render("index", {
         shoes
     });

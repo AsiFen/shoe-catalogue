@@ -1,14 +1,24 @@
 <body>
- 
+
     <div class="display_filter">
 
         <section class="filter float-left text-xl w-120">
 
             <label for="">Filter by brand:</label>
-            <form action="/brand/" method="get">
-        
+
                 {{#each brandNames}}
-                <button type="submit" class="bg-neutral-500 p-2 border rounded" formaction="/brand/{{this.brand}}">{{this.brand}}</button>
+            <form action="/brand/{{this.brand}}" method="get">
+                <button type="submit" class="bg-neutral-500 p-2 border rounded"
+                    formaction="/brand/{{this.brand}}">{{this.brand}}</button>
+                {{/each}}
+            </form>
+
+            <label for=""> filter by Size:</label>
+            <form action="/size/" method="get">
+
+                {{#each sizes}}
+                <button type="submit" class="bg-neutral-500 p-2 border rounded"
+                    formaction="/size/{{this.size}}">{{this.size}}</button>
                 {{/each}}
             </form>
         </section>

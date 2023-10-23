@@ -38,42 +38,50 @@ import "dotenv/config";
 const router = Router();
 
 // Api endpoint
-const api = "https://shoes-api-rm9c.onrender.com/api/shoes";
+const api = "http://localhost:9999/api/shoes";
 const shoes = (await axios.get(api)).data;
 
 //  console.log(shoes);
 router.get("/", async (req, res) => {
-    let brands = []
-    const brandNames = "http://localhost:9999/api/shoes/brandnames";
-    const shoes = (await axios.get(brandNames)).data;
+    //let brands = []
+    const api = "http://localhost:9999/api/shoes/brandnames";
+    const brandNames = (await axios.get(api)).data;
 
     console.log(brandNames);
-    // brandNames.forEach(brand => {
-    //     brands.push(brand.brand);
-    // });
+  
 
     res.render("index", {
         shoes,
-        brandNames
+        brandNames,
+        // size
     });
     res.end;
 });
 
 app.get('/brand/:brand', async (req, res) => {
-    let x = req.params.brand;
-    const api = "https://shoes-api-rm9c.onrender.com/api/shoes/brand/" + x;
+    let brand = req.params.brand;
+    const api = `http://localhost:9999/api/shoes/brand/${brand}`;
+    const api_brand = "http://localhost:9999/api/shoes/brandnames";
+    const brandNames = (await axios.get(api_brand)).data;
+
     const shoes = (await axios.get(api)).data;
-    // console.log(shoes);
+    console.log(shoes);
     res.render("index", {
-        shoes
+        shoes,
+        brandNames
     });
 })
 
-// app.get('/:size', async (req, res) => {
-//     let x = req.params.brand;
-//     let size = shoes
-//     res.end;
-// })
+app.get('size/:size', async (req, res) => {
+    let size = req.params.size;
+    console.log(size);
+    const api = "http://localhost:9999/api/shoes/size" + size;
+    const shoes = (await axios.get(api)).data;
+    res.render("index", {
+        shoes
+    });
+    res.end;
+})
 
 // app.get('/:brand/:size', async (req, res) => {
 

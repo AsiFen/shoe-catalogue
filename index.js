@@ -81,16 +81,17 @@ app.get('/brand/:brand', async (req, res) => {
 
 app.get('/size/:size', async (req, res) => {
     let size_ = req.params.size;
-    const api_size = `http://localhost:9999/api/shoes/size/${size_}`;
+    const api_size = `https://shoes-api-rm9c.onrender.com/api/shoes/size/${size_}`;
+
     const shoes = (await axios.get(api_size)).data;
 
-    const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
+    const api_brandnames = "https://shoes-api-rm9c.onrender.com/api/shoes/brandnames";
     const brandNames = (await axios.get(api_brandnames)).data;
 
-    const api_sizes = "http://localhost:9999/api/shoes/sizes";
+    const api_sizes = "https://shoes-api-rm9c.onrender.com/api/shoes/sizes";
     const sizes = (await axios.get(api_sizes)).data;
 
-    const api_colors = "http://localhost:9999/api/shoes/colors";
+    const api_colors = "https://shoes-api-rm9c.onrender.com/api/shoes/colors";
     const colors = (await axios.get(api_colors)).data;
 
     res.render("index", {
@@ -100,13 +101,13 @@ app.get('/size/:size', async (req, res) => {
         colors
     });
     res.end;
-})
+});
 
 app.get('/color/:color', async (req, res) => {
     let color_params = req.params.color;
     const api_size = `http://localhost:9999/api/shoes/colors/${color_params}`;
     const shoes = (await axios.get(api_size)).data;
-    
+
     const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
     const brandNames = (await axios.get(api_brandnames)).data;
 

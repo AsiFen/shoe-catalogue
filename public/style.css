@@ -59,12 +59,13 @@
 
 
 img {
+    max-height: 300px;
     width: 250px;
-    border-radius: 50%;
-    width: 600;
+    /* border-radius: 50%;
+    width: 600; */
 }
 
-html{
+html {
     font-size: 14px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

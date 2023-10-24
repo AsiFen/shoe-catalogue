@@ -37,48 +37,90 @@ import "dotenv/config";
 // Router instance
 const router = Router();
 
-// Api endpoint
-const api = "http://localhost:9999/api/shoes";
-const shoes = (await axios.get(api)).data;
-
-//  console.log(shoes);
 router.get("/", async (req, res) => {
-    //let brands = []
+    const api_all_shoes = "http://localhost:9999/api/shoes";
+    const shoes = (await axios.get(api_all_shoes)).data;
+
     const api = "http://localhost:9999/api/shoes/brandnames";
     const brandNames = (await axios.get(api)).data;
 
-    console.log(brandNames);
-  
+    const api_sizes = "http://localhost:9999/api/shoes/sizes";
+    const sizes = (await axios.get(api_sizes)).data;
+
+    const api_colors = "http://localhost:9999/api/shoes/colors";
+    const colors = (await axios.get(api_colors)).data;
 
     res.render("index", {
         shoes,
         brandNames,
-        // size
+        sizes,
+        colors
     });
-    res.end;
 });
 
 app.get('/brand/:brand', async (req, res) => {
     let brand = req.params.brand;
-    const api = `http://localhost:9999/api/shoes/brand/${brand}`;
-    const api_brand = "http://localhost:9999/api/shoes/brandnames";
-    const brandNames = (await axios.get(api_brand)).data;
+    const api_brand = `http://localhost:9999/api/shoes/brand/${brand}`;
+    const shoes = (await axios.get(api_brand)).data;
+    const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
+    const brandNames = (await axios.get(api_brandnames)).data;
 
-    const shoes = (await axios.get(api)).data;
-    console.log(shoes);
+    const api_sizes = "http://localhost:9999/api/shoes/sizes";
+    const sizes = (await axios.get(api_sizes)).data;
+
+    const api_colors = "http://localhost:9999/api/shoes/colors";
+    const colors = (await axios.get(api_colors)).data;
+
     res.render("index", {
         shoes,
-        brandNames
+        brandNames,
+        sizes,
+        colors
     });
 })
 
-app.get('size/:size', async (req, res) => {
-    let size = req.params.size;
-    console.log(size);
-    const api = "http://localhost:9999/api/shoes/size" + size;
-    const shoes = (await axios.get(api)).data;
+app.get('/size/:size', async (req, res) => {
+    let size_ = req.params.size;
+    const api_size = `http://localhost:9999/api/shoes/size/${size_}`;
+    const shoes = (await axios.get(api_size)).data;
+
+    const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
+    const brandNames = (await axios.get(api_brandnames)).data;
+
+    const api_sizes = "http://localhost:9999/api/shoes/sizes";
+    const sizes = (await axios.get(api_sizes)).data;
+
+    const api_colors = "http://localhost:9999/api/shoes/colors";
+    const colors = (await axios.get(api_colors)).data;
+
     res.render("index", {
-        shoes
+        shoes,
+        brandNames,
+        sizes,
+        colors
+    });
+    res.end;
+})
+
+app.get('/color/:color', async (req, res) => {
+    let color_params = req.params.color;
+    const api_size = `http://localhost:9999/api/shoes/colors/${color_params}`;
+    const shoes = (await axios.get(api_size)).data;
+    
+    const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
+    const brandNames = (await axios.get(api_brandnames)).data;
+
+    const api_sizes = "http://localhost:9999/api/shoes/sizes";
+    const sizes = (await axios.get(api_sizes)).data;
+
+    const api_colors = "http://localhost:9999/api/shoes/colors";
+    const colors = (await axios.get(api_colors)).data;
+
+    res.render("index", {
+        shoes,
+        brandNames,
+        sizes,
+        colors
     });
     res.end;
 })

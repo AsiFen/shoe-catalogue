@@ -7,8 +7,12 @@ import bodyParser from 'body-parser';
 import flash from 'express-flash';
 import session from 'express-session';
 //creating an instance of the epxress module
+import { Router } from "express";
+import axios from "axios";
+import "dotenv/config";
+
 let app = express()
-//create an instance of my greetings function imported as module
+const router = Router();
 
 //configuring the handlebars module
 app.engine('handlebars', exphbs.engine());
@@ -30,12 +34,6 @@ app.use(bodyParser.json())
 //built-in static middleware from ExpressJS to use static resources
 app.use(express.static('public'))
 
-import { Router } from "express";
-import axios from "axios";
-import "dotenv/config";
-
-// Router instance
-const router = Router();
 
 router.get("/", async (req, res) => {
     const api_all_shoes = "http://localhost:9999/api/shoes";
@@ -58,7 +56,7 @@ router.get("/", async (req, res) => {
     });
 });
 
-app.get('/brand/:brand', async (req, res) => {
+router.get('/brand/:brand', async (req, res) => {
     let brand = req.params.brand;
     const api_brand = `http://localhost:9999/api/shoes/brand/${brand}`;
     const shoes = (await axios.get(api_brand)).data;
@@ -79,7 +77,7 @@ app.get('/brand/:brand', async (req, res) => {
     });
 })
 
-app.get('/size/:size', async (req, res) => {
+router.get('/size/:size', async (req, res) => {
     let size_ = req.params.size;
     const api_size = `http://localhost:9999/api/shoes/size/${size_}`;
 
@@ -103,7 +101,7 @@ app.get('/size/:size', async (req, res) => {
     res.end;
 });
 
-app.get('/color/:color', async (req, res) => {
+router.get('/color/:color', async (req, res) => {
     let color_params = req.params.color;
     const api_size = `http://localhost:9999/api/shoes/colors/${color_params}`;
     const shoes = (await axios.get(api_size)).data;
@@ -125,13 +123,13 @@ app.get('/color/:color', async (req, res) => {
     });
 })
 
-app.get('/:brand/:size', async (req, res) => {
+router.get('/:brand/:size', async (req, res) => {
     let size_params = req.params.size;
     let brand_params = req.params.brand;
 
     const api_size = `http://localhost:9999/api/shoes/brand/${brand_params}/size/${size_params}`;
     const shoes = (await axios.get(api_size)).data;
-    console.log(shoes);
+    //console.log(shoes);
 
     const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
     const brandNames = (await axios.get(api_brandnames)).data;
@@ -150,6 +148,15 @@ app.get('/:brand/:size', async (req, res) => {
     });
 })
 
+router.get('/api/shoes', async (req, res) => {
+    res.render('addShoe', {
+        size: 'hi'
+    })
+})
+
+router.post('/api/shoes', async (req, res) => {
+
+})
 
 app.use(router)
 //process the enviroment the port is running on

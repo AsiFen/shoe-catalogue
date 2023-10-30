@@ -1,7 +1,53 @@
+<section class="navigation">
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/">
+                    <img src="/images.png" alt="bbtrfly">
+                </a>
+            </div>
+            <span class="text-4xl bold" class="w-40">Sneaker House</span>
+            <div class="navbar-icons">
+                <a href="/search" class="nav-link">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a href="/cart" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="/customer_signup" class="nav-link">
+                    <i class='fas fa-user-alt'></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+</section>
+
 <body>
     <div class="display_filter flex">
 
         <section class="filter w-1/4 p-4">
+
+            <div class="change">
+                <form action="/filter" method="post">
+                    <label for="brand">Filter by brand:</label>
+                    <select name="brand" id="brand">
+                        {{#each brandNames}}
+                        <option value="{{this.brand}}">{{this.brand}}</option>
+                        {{/each}}
+                    </select>
+
+                 <div>
+                       <label for="size">Filter by size:</label>
+                    <select name="size" id="size">
+                        {{#each sizes}}
+                        <option value="{{this.shoe_size}}">{{this.shoe_size}}</option>
+                        {{/each}}
+                    </select>
+                 </div>
+
+                    <button type="submit" class="bg-neutral-100 p-2 rounded mb-2 w-full">Filter</button>
+                </form>
+            </div>
 
             <form action="/" method="get">
                 <button type="submit" class="bg-neutral-100 p-2 rounded mb-2 w-full" formaction="/">View All</button>
@@ -30,6 +76,7 @@
                     formaction="/color/{{this.color}}">{{this.color}}</button>
             </form>
             {{/each}}
+
         </section>
 
         <section class="shoe_display w-3/4 p-4">
@@ -43,7 +90,7 @@
                         <p class="text-gray-600">Color: {{this.color}}</p>
                         <p class="text-gray-600">Size: {{this.shoe_size}}</p>
                         <p class="text-gray-600">Qty: {{this.stock}}</p>
-                        <p class="text-gray-600">Price: ZAR{{this.price}}</p>
+                        <p class="text-gray-600">Price: ZAR {{this.price}}</p>
                     </div>
                 </div>
                 {{/each}}

@@ -1,30 +1,49 @@
-
-<body class="bg-gray-100 flex items-center justify-center h-screen">
+<div class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded shadow-md w-full sm:w-96">
         <h2 class="text-2xl mb-4 text-center">Add New Shoes</h2>
-        <form action="/api/shoes" method="post">
+        <form action="/add-shoes" method="post">
             <label for="brand" class="block mb-2">Brand:</label>
-            <input type="text" id="brand" name="brand" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <select id="brand" name="brand" class="w-full border border-gray-300 p-1 mb-4 rounded" required>
+                <option value="">Select a Brand</option>
+                <option value="Puma">Puma</option>
+                <option value="Nike">Nike</option>
+                <option value="New Balance">New Balance</option>
+                <option value="Reebok">Reebok</option>
+                <option value="Adidas">Adidas</option>
+            </select>
 
             <label for="shoeName" class="block mb-2">Shoe Name:</label>
-            <input type="text" id="shoeName" name="shoe_name" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <input type="text" id="shoeName" name="shoe_name" class="w-full border border-gray-300 p-1 mb-4 rounded"
+                required>
 
             <label for="shoeSize" class="block mb-2">Size:</label>
-            <input type="number" id="shoeSize" name="size" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <input type="number" id="shoeSize" name="size" class="w-full border border-gray-300 p-1 mb-4 rounded"
+                required>
 
-            <label for="shoeColor" class="block mb-2">Color:</label>
-            <input type="text" id="shoeColor" name="color" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <label for="solidColor">Color:</label>
+            <select id="solidColor" name="color">
+                <option value="Red">Red</option>
+                <option value="Green">Green</option>
+                <option value="Blue">Blue</option>
+                <option value="Yellow">Yellow</option>
+                <option value="Orange">Orange</option>
+                <option value="Purple">Purple</option>
+                <option value="Pink">Pink</option>
+                <option value="Teal">Teal</option>
+            </select>
 
             <label for="quantity" class="block mb-2">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <input type="number" id="quantity" name="quantity" class="w-full border border-gray-300 p-1 mb-4 rounded"
+                required>
 
             <label for="imageUrl" class="block mb-2">Image URL:</label>
-            <input type="text" id="imageUrl" name="img_url" class="w-full border border-gray-300 p-2 mb-4 rounded" required>
+            <input type="text" id="imageUrl" name="img_url" class="w-full border border-gray-300 p-1 mb-4 rounded"
+                required>
 
-            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300 ease-in-out">
                 Add Shoes
             </button>
         </form>
     </div>
-</body>
-</html>
+</div>

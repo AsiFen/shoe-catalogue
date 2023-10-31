@@ -155,7 +155,10 @@ router.post('/filter', async (req, res) => {
 })
 
 router.get('/carter', async (req, res) => {
-res.send('cart', 'hi')
+  let  size = 4
+res.render('cart', {
+    size
+})
 })
 
 router.get('/add-shoes', async (req, res) => {

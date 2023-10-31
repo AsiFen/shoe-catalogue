@@ -81,7 +81,6 @@ router.get('/brand/:brand', async (req, res) => {
 router.get('/size/:size', async (req, res) => {
     let size_ = req.params.size;
     const api_size = `https://shoes-api-rm9c.onrender.com/api/shoes/size/${size_}`;
-
     const shoes = (await axios.get(api_size)).data;
 
     const api_brandnames = "https://shoes-api-rm9c.onrender.com/api/shoes/brandnames";
@@ -155,14 +154,17 @@ router.post('/filter', async (req, res) => {
     })
 })
 
+router.get('/carter', async (req, res) => {
+res.send('cart', 'hi')
+})
+
 router.get('/add-shoes', async (req, res) => {
     res.render("addShoe", {
-        size: 'hi'
+        size
     })
 })
 
 router.post('/add-shoes', async (req, res) => {
-
 
     let obj = {
         'color': req.body.color,
@@ -173,7 +175,7 @@ router.post('/add-shoes', async (req, res) => {
         'stock': parseInt(req.body.quantity),
         'brand': req.body.brand
     }
-    console.log(obj);
+
     axios.post('https://shoes-api-rm9c.onrender.com/api/shoes', obj)
         .then(response => {
             // Handle the response from the API.
@@ -191,6 +193,8 @@ router.post('/add-shoes', async (req, res) => {
         });
 
 })
+
+
 
 app.use(router)
 //process the enviroment the port is running on

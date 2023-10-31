@@ -68,6 +68,14 @@ img {
 
 html {
     font-size: 14px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Times New Roman', Times, serif;
 }
 
+.notification {
+    padding: 3em;
+    background-color: red;
+  }
+
+  /* .special{
+    
+  } */

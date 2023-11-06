@@ -78,3 +78,7 @@ html {
   /* .special{
     
   } */
+
+  .filter-selected{
+    background-color: teal;
+  }

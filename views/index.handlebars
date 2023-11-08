@@ -24,10 +24,10 @@
 </section>
 
 <body>
-    <div class="display_filter flex">
+  <div class="display_filter flex">
 
         <section class="filter w-1/4 p-4">
-            <div class="filters">
+        {{!--       <div class="filters">
                 <div class="filter-container brand-filter">
                     <h3>Brand</h3>
                     {{#each brandNames}}
@@ -53,7 +53,7 @@
                         {{this.color}}
                     </div>
                     {{/each}}
-                </div>
+                </div> --}}
 
 
                 <form action="/" method="get">
@@ -107,7 +107,7 @@
                             <form action="/addToCart/{{this.id}}" method="post">
                                 <button type="submit"
                                     class="add-cart-button font-semibold bg-neutral-300 justify-center p-2 rounded {{this.brand}}">
-                                    <i class="fas fa-shopping-bag"></i> ADD TO CART
+                                    Add To <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </form>
                         </div>
@@ -123,7 +123,7 @@
         const selectedFilters = [];
 
         filterButtons.addEventListener('click', function () {
-        console.log('listener active?')
+          //  console.log('listener active?')
         })
     </script>
 

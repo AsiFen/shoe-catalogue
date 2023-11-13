@@ -20,7 +20,7 @@ app.set('view engine', 'handlebars');
 // app.set('views', './views');
 // initialise session middleware - flash-express depends on it
 app.use(session({
-    secret: "<add a secret string here>",
+    secret: "<iamafraidofsnakes>",
     resave: false,
     saveUninitialized: true
 }));
@@ -34,17 +34,17 @@ app.use(bodyParser.json())
 //built-in static middleware from ExpressJS to use static resources
 app.use(express.static('public'))
 
-const api_brandnames = "http://localhost:9999/api/shoes/brandnames";
+const api_brandnames = "https://shoes-api-rm9c.onrender.com/api/shoes/brandnames";
 const brandNames = (await axios.get(api_brandnames)).data;
 
-const api_sizes = "http://localhost:9999/api/shoes/sizes";
+const api_sizes = "https://shoes-api-rm9c.onrender.com/api/shoes/sizes";
 const sizes = (await axios.get(api_sizes)).data;
 
-const api_colors = "http://localhost:9999/api/shoes/colors";
+const api_colors = "https://shoes-api-rm9c.onrender.com/api/shoes/colors";
 const colors = (await axios.get(api_colors)).data;
 
 router.get("/", async (req, res) => {
-    const api_all_shoes = "http://localhost:9999/api/shoes";
+    const api_all_shoes = "https://shoes-api-rm9c.onrender.com/api/shoes";
     let shoes = (await axios.get(api_all_shoes)).data;
 
     res.render("index", {
@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
 
 router.get('/brand/:brand', async (req, res) => {
     let brand = req.params.brand;
-    const api_brand = `http://localhost:9999/api/shoes/brand/${brand}`;
+    const api_brand = `https://shoes-api-rm9c.onrender.com/api/shoes/brand/${brand}`;
     let shoes = (await axios.get(api_brand)).data
     console.log(shoes);
     res.render("index", {
@@ -70,7 +70,7 @@ router.get('/brand/:brand', async (req, res) => {
 
 router.get('/size/:size', async (req, res) => {
     let size_ = req.params.size;
-    const api_size = `http://localhost:9999/api/shoes/size/${size_}`;
+    const api_size = `https://shoes-api-rm9c.onrender.com/api/shoes/size/${size_}`;
 
     let shoes = (await axios.get(api_size)).data;
 
@@ -85,7 +85,7 @@ router.get('/size/:size', async (req, res) => {
 router.get('/color/:color', async (req, res) => {
 
     let color_params = req.params.color;
-    const api_size = `http://localhost:9999/api/shoes/colors/${color_params}`;
+    const api_size = `https://shoes-api-rm9c.onrender.com/api/shoes/colors/${color_params}`;
     let shoes = (await axios.get(api_size)).data;
 
     res.render("index", {
@@ -100,7 +100,7 @@ router.post('/filter', async (req, res) => {
     let size_params = req.body.size;
     let brand_body = req.body.brand;
 
-    const api_brand_size = `http://localhost:9999/api/shoes/brand/${brand_body}/size/${size_params}`;
+    const api_brand_size = `https://shoes-api-rm9c.onrender.com/api/shoes/brand/${brand_body}/size/${size_params}`;
     let shoes = (await axios.get(api_brand_size)).data;
 
     res.render("index", {
@@ -128,7 +128,7 @@ router.post('/signup', async (req, res) => {
     const username = req.body.signupUsername;
     const password = req.body.signupPassword;
 
-    const signupApiUrl = 'http://localhost:9999/signup';
+    const signupApiUrl = 'https://shoes-api-rm9c.onrender.com/signup';
     const signupData = {
         username: username,
         password: password,
@@ -163,7 +163,7 @@ router.post('/login', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const loginApiUrl = 'http://localhost:9999/login';
+    const loginApiUrl = 'https://shoes-api-rm9c.onrender.com/login';
     const loginData = {
         username: username,
         password: password,
@@ -195,9 +195,9 @@ router.post('/addToCart/:id', async (req, res) => {
     console.log(userId);
 
     try {
-        const addToCartUrl = `http://localhost:9999/cart/${userId}/add/${shoeId}`;
+        const addToCartUrl = `https://shoes-api-rm9c.onrender.com/cart/${userId}/add/${shoeId}`;
         await axios.post(addToCartUrl);
-        const getCartUrl = `http://localhost:9999/cart/${userId}`;
+        const getCartUrl = `https://shoes-api-rm9c.onrender.com/cart/${userId}`;
         const cartShoes = (await axios.get(getCartUrl)).data;
         console.log(cartShoes);
         res.redirect('/'); // Redirect to the cart page after adding the shoe
@@ -211,7 +211,7 @@ router.get('/cart', async (req, res) => {
     const userId = req.session.userId; // Retrieve userId from session
 
     try {
-        const getCartUrl = `http://localhost:9999/cart/${userId}`;
+        const getCartUrl = `https://shoes-api-rm9c.onrender.com/cart/${userId}`;
         const cartShoes = (await axios.get(getCartUrl)).data;
         console.log(cartShoes);
         let cartPrice = 0;
@@ -240,7 +240,7 @@ router.post('/add-shoe', async (req, res) => {
         'brand': req.body.brand
     }
 
-    axios.post('http://localhost:9999/api/shoes', obj)
+    axios.post('https://shoes-api-rm9c.onrender.com/api/shoes', obj)
         .then(response => {
             // Handle the response from the API.
             if (response.status === 200) {
